@@ -30,4 +30,20 @@ public class SellerRegistrationController {
         List<SellerRegistration> sellerRegistrations = sellerRegistrationService.getAllSellerRegistrations();
         return new ResponseEntity<>(sellerRegistrations, HttpStatus.OK);
     }
+    
+    // New Api end point for login feature
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestParam String emailID, @RequestParam String password) {
+        if (emailID == null || password == null) {
+            // Handle missing parameters
+            return new ResponseEntity<>("Missing emailID or password", HttpStatus.BAD_REQUEST);
+        }
+
+        boolean isValidLogin = sellerRegistrationService.validateLogin(emailID, password);
+        if (isValidLogin) {
+            return new ResponseEntity<>("Login successful", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Invalid email or password", HttpStatus.UNAUTHORIZED);
+        }
+    }
 }

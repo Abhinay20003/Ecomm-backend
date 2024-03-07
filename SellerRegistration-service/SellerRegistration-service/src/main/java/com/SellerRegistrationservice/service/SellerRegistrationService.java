@@ -23,5 +23,11 @@ public class SellerRegistrationService {
 	public List<SellerRegistration> getAllSellerRegistrations() {
 		return sellerRegistrationRepo.findAll();
 	}
+	public boolean validateLogin(String emailID, String password) {
+	    SellerRegistration seller = sellerRegistrationRepo.findByEmailID(emailID);
+	    return seller != null && seller.getPassword().equals(password);
+	}
+
+
 
 }
