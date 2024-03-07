@@ -25,10 +25,10 @@ public class SellerRegistrationController {
         return new ResponseEntity<>(createdSellerRegistration, HttpStatus.CREATED);
     }
 
-    @GetMapping("/getdetails")
-    public ResponseEntity<List<SellerRegistration>> getAllSellerRegistrations() {
+  @GetMapping("/getdetails")
+  public ResponseEntity<List<SellerRegistration>> getAllSellerRegistrations() {
         List<SellerRegistration> sellerRegistrations = sellerRegistrationService.getAllSellerRegistrations();
-        return new ResponseEntity<>(sellerRegistrations, HttpStatus.OK);
+       return new ResponseEntity<>(sellerRegistrations, HttpStatus.OK);
     }
     
     // New Api end point for login feature
