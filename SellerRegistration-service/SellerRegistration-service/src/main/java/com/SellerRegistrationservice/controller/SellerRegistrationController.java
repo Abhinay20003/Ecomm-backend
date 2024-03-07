@@ -34,10 +34,9 @@ public class SellerRegistrationController {
     // New Api end point for login feature
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestParam String emailID, @RequestParam String password) {
-        if (emailID == null || password == null) {
-            // Handle missing parameters
-            return new ResponseEntity<>("Missing emailID or password", HttpStatus.BAD_REQUEST);
-        }
+    	 if (emailID.isEmpty() || password.isEmpty()) {
+    	        return new ResponseEntity<>("EmailID or password cannot be empty", HttpStatus.BAD_REQUEST);
+    	    }
 
         boolean isValidLogin = sellerRegistrationService.validateLogin(emailID, password);
         if (isValidLogin) {
